@@ -177,7 +177,7 @@ a {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
+
   border-radius: 0; }
 
 .btn-facebook {
@@ -199,6 +199,15 @@ a {
             border: 1px solid #0073c4;
             outline: none;
             background-color: #0073c4; }
+            .btn-inbox {
+                color: #ffffff;
+                border: 1px solid #009340;
+                background-color: #009340; }
+            .btn-inbox:focus, .btn-inbox:hover {
+                  color: white;
+                  border: 1px solid #046c31;
+                  outline: none;
+                  background-color: #046c31; }
 
 .btn-default {
   color: #ffffff;
@@ -279,6 +288,7 @@ img::-moz-selection {
   filter: invert(100%);
 }
 .crl{
+  margin-bottom: 20px;
   width: 128px;
   padding: 30px;
   background: #b42121;
