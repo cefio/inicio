@@ -1,0 +1,58 @@
+.titulo{
+    border-radius: 10px;
+    background: rgba(255,0,0,1);
+    background: -moz-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,0,0,1)), color-stop(100%, rgba(235,124,5,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: linear-gradient(135deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#eb7c05', GradientType=1 );
+    color: white;
+}
+.table-striped{
+    background: rgba(255,0,0,0.2);
+}
+
+.botones{
+    padding: 15px;
+}
+#ultima{
+    background: green;
+    color: #ffffff;
+}
+.table-responsive{
+    padding: 15px;
+}
+
+.myButton {
+	background: rgba(255,0,0,1);
+    background: -moz-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,0,0,1)), color-stop(100%, rgba(235,124,5,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    background: linear-gradient(135deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#eb7c05', GradientType=1 );
+	background-color:rgba(255,0,0,1);
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid rgba(255,0,0,1);
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:16px 31px;
+	text-decoration:none;
+}
+.myButton:hover {
+    color: white;
+	background: rgba(255,0,0,1);
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
