@@ -120,6 +120,7 @@ var estado=localStorage.getItem("uriel/estado");
 		});
 		tabla = tabla.slice(0,-1);
 		localStorage.setItem("uriel/tabla",tabla);
+		console.log(localStorage.getItem("uriel/tabla"));
 	}
 	function guardararchivo(){
 		$.ajax({
