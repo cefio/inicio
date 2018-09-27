@@ -52,11 +52,9 @@ var estado=localStorage.getItem("uriel/estado");
 			if(tabla[i+3]=="00:00:00"){
 				var fila='<tr id="ultima"><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
 				$('#tabla').append(fila);
-				console.log("1");
 			}else{
 				var fila='<tr><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
 				$('#tabla').append(fila);
-				console.log("2");
 			}
 			i=i+4;
 		}
