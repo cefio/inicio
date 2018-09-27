@@ -1,44 +1,83 @@
+.body{
+    background: #f5f5f5;
+}
+#tabla tbody tr:last-child td:last-child{
+    border-radius: 0 0 10px 0;
+}
+#tabla tbody tr:last-child td:first-child{
+    border-radius: 0 0 0 10px;
+}
+#tabla thead td:first-child {
+    border-radius: 10px 0 0 0;
+}
+#tabla thead td:last-child {
+    border-radius: 0 10px 0 0;
+}
+#ultima td:first-child {
+    border-radius: 0 0 0 10px;
+}
+#ultima td:last-child {
+    border-radius: 0 0 10px 0;
+}
+#tabla tbody {
+    background: #ffffff;
+}
+#tabla td{
+    padding: 10px;
+}
+
+#tabla thead tr td{
+    margin: 30px;
+}
+
 .titulo{
-    border-radius: 10px;
-    background: rgba(255,0,0,1);
-    background: -moz-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,0,0,1)), color-stop(100%, rgba(235,124,5,1)));
-    background: -webkit-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -o-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -ms-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: linear-gradient(135deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#eb7c05', GradientType=1 );
-    color: white;
+    background: #7f0000;
+    color: #ffffff;
 }
 .table-striped{
     background: rgba(255,0,0,0.2);
 }
-
 .botones{
-    padding: 15px;
+    display:scroll;
+    position:fixed;
+    bottom:10px;
+    right:0px;
+}
+.barra{
+    background: #b71c1c;
+    width: 100%;
+    height: 250px;
+}
+.table{
+    margin-bottom: 0px;
 }
 #ultima{
     background: green;
     color: #ffffff;
 }
-.table-responsive{
-    padding: 15px;
+h1{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    color: #ffffff
+}
+.tabler{
+    position: relative;
+    top: -180px;
+    width: 96%;
+    padding: 0px;
+    margin: 10px;
+    border-radius: 9px;
+    -webkit-box-shadow: -2px 5px 25px 2px rgba(0,0,0,0.43);
+    -moz-box-shadow: -2px 5px 25px 2px rgba(0,0,0,0.43);
+    box-shadow: -2px 5px 25px 2px rgba(0,0,0,0.43);
 }
 
 .myButton {
-	background: rgba(255,0,0,1);
-    background: -moz-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,0,0,1)), color-stop(100%, rgba(235,124,5,1)));
-    background: -webkit-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -o-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: -ms-linear-gradient(-45deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    background: linear-gradient(135deg, rgba(255,0,0,1) 0%, rgba(235,124,5,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#eb7c05', GradientType=1 );
-	background-color:rgba(255,0,0,1);
+	background: #0d47a1;
 	-moz-border-radius:28px;
 	-webkit-border-radius:28px;
 	border-radius:28px;
-	border:1px solid rgba(255,0,0,1);
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -48,8 +87,12 @@
 	text-decoration:none;
 }
 .myButton:hover {
-    color: white;
-	background: rgba(255,0,0,1);
+    color: #ffffff;
+	background: #002171;
+}
+.myButton:disabled{
+    background: #b1bfca;
+    color: #ffffff
 }
 .myButton:active {
 	position:relative;
