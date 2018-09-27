@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CEFIO - Bienvenido</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/tabla.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <div id="content">
+      <div class="barra">
+        <h1>Uriel - Horario</h1>
+      </div>
+      <div class="tabler">
+        <table id="tabla" class="table">
+          <thead class="titulo">
+            <tr>
+              <td>Dia</td>
+              <td>Entrada</td>
+              <td>Salida</td>
+              <td>Tiempo</td>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    
+      
+    </div>
+    <div class="botones">
+        <button id="bt_entrada" class="btn btn-default myButton">Entrada</button>
+        <button id="bt_salida" class="btn btn-default myButton">Salida</button>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+	  <script>
+	    // Initialize Firebase
+	    var config = {
+		  apiKey: "AIzaSyApHdQx5nfBK9kPlhnGw3tSZ7yWsIcnjks",
+		  authDomain: "cefio-8a94c.firebaseapp.com",
+		  databaseURL: "https://cefio-8a94c.firebaseio.com",
+		  projectId: "cefio-8a94c",
+		  storageBucket: "cefio-8a94c.appspot.com",
+		  messagingSenderId: "728470860279"
+	    };
+	    firebase.initializeApp(config);
+	  </script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/Jessica.js"></script>
+
+  </body>
+
+</html>
