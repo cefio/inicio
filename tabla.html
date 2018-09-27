@@ -49,13 +49,25 @@
         <button id="bt_entrada" class="btn btn-default myButton">Entrada</button>
         <button id="bt_salida" class="btn btn-default myButton">Salida</button>
     </div>
-
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+	  <script>
+	    // Initialize Firebase
+	    var config = {
+		  apiKey: "AIzaSyApHdQx5nfBK9kPlhnGw3tSZ7yWsIcnjks",
+		  authDomain: "cefio-8a94c.firebaseapp.com",
+		  databaseURL: "https://cefio-8a94c.firebaseio.com",
+		  projectId: "cefio-8a94c",
+		  storageBucket: "cefio-8a94c.appspot.com",
+		  messagingSenderId: "728470860279"
+	    };
+	    firebase.initializeApp(config);
+	  </script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/Uriel.js"></script>
