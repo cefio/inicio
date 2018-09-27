@@ -1,14 +1,12 @@
 var estado=localStorage.getItem("uriel/estado");
-	var tabla=localStorage.getItem("uriel/tabla");
 	var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 	var ultima = new Array();
 	$(document).ready(function(){
-		console.log(tabla);
-		console.log(estado)
+		
+		obtenertabla();
 		if(estado==null){
 			estado="true"
 		}
-		rellenartabla();
 		if (typeof(Storage) !== "undefined") {
     		alert("si");
 		} else {
@@ -25,9 +23,7 @@ var estado=localStorage.getItem("uriel/estado");
 		});
 		$('#bt_salida').click(function(){
 			salida();
-            guardar();
-            limpiar();
-            rellenartabla();
+            guardar();;
 		});
 		$('#bt_reiniciar').click(function(){
 			//reiniciar();
@@ -36,12 +32,17 @@ var estado=localStorage.getItem("uriel/estado");
 		
 
 	});
+	function obtenertabla(){
+		firebase.database().ref('/Uriel/tabla').once('value').then(function(snapshot) {
+			rellenartabla(snapshot.val());
+		  });
+	}
 	function reiniciar(){
 		localStorage.clear();
 	}
-	function rellenartabla(){
+	function rellenartabla(tabla){
 		var i=0;
-		if(tabla==null){
+		if(tabla==""){
 			tabla = new Array();
 		}else{
 			tabla = tabla.split(",");
@@ -50,11 +51,14 @@ var estado=localStorage.getItem("uriel/estado");
 			
 			if(tabla[i+3]=="00:00:00"){
 				var fila='<tr id="ultima"><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
+				$('#tabla').append(fila);
+				console.log("1");
 			}else{
 				var fila='<tr><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
+				$('#tabla').append(fila);
+				console.log("2");
 			}
 			i=i+4;
-			$('#tabla').append(fila);
 		}
 	}
 	function entrada(){
@@ -109,31 +113,27 @@ var estado=localStorage.getItem("uriel/estado");
 		});
 	}
 	function eliminar(){
-		$('#ultima td').each(function(indice){			
+		$('#tabla tbody #ultima').each(function(indice){			
 			$(this).remove();
 		});
 	}
 	function guardar(){
 		tabla ="";
 		$('#tabla tbody tr td').each(function(){
-				tabla = tabla+$(this).text()+","
+				tabla = tabla+$(this).text()+",";
 		});
 		tabla = tabla.slice(0,-1);
+		firebase.database().ref("Uriel/tabla").set(tabla);
 		localStorage.setItem("uriel/tabla",tabla);
-		console.log(localStorage.getItem("uriel/tabla"));
 	}
 	function guardararchivo(){
-		$.ajax({
-			     type: "POST",
-			     url: "funcion.php",
-			     data: { "codigo" :  "codigo" },
-			     success: function(data){
-					alert(data);
-			     }
-			 });
+		var fso  = new XMLHttpRequest("Scripting.FileSystemObject"); 
+   		var fh = fso.CreateTextFile("Test.txt", true); 
+   		fh.WriteLine("Some text goes here..."); 
+   		fh.Close(); 
 	}
     function limpiar(){
-		$('#tabla tbody tr td').each(function(){
+		$('#tabla tbody tr').each(function(){
 				$(this).remove();
 		});
 	}
