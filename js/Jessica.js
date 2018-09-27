@@ -1,4 +1,4 @@
-var estado=localStorage.getItem("jesica/estado");
+var estado=localStorage.getItem("jessica/estado");
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var ultima = new Array();
 $(document).ready(function(){
@@ -67,7 +67,7 @@ function entrada(){
 		$('#bt_entrada').attr('disabled', true);
 		$('#bt_salida').attr('disabled', false);
 		estado="false";
-		localStorage.setItem("jesica/estado", estado);
+		localStorage.setItem("jessica/estado", estado);
 	}
 	$('#tabla').append(fila);
 }
@@ -84,7 +84,7 @@ function salida(){
 		$('#bt_entrada').attr('disabled', false);
 		$('#bt_salida').attr('disabled', true);
 		estado="true";
-		localStorage.setItem("jesica/estado", estado);
+		localStorage.setItem("jessica/estado", estado);
 	}
 }
 function restahoras(){
@@ -121,7 +121,7 @@ function guardar(){
 			tabla = tabla+$(this).text()+",";
 	});
 	tabla = tabla.slice(0,-1);
-	firebase.database().ref("Jesica/tabla").set(tabla);
+	firebase.database().ref("Jessica/tabla").set(tabla);
 	localStorage.setItem("jessica/tabla",tabla);
 }
 function guardararchivo(){
