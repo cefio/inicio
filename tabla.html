@@ -20,30 +20,35 @@
   </head>
 
   <body id="page-top">
-
-    <div id="content">
-      <div class="barra">
-        <h1>Uriel - Horario</h1>
-      </div>
-      <div class="tabler">
-        <table id="tabla" class="table">
-          <thead class="titulo">
-            <tr>
-              <td>Dia</td>
-              <td>Entrada</td>
-              <td>Salida</td>
-              <td>Tiempo</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    
-      
+    <div id="contenido" class="contenido">
+        <div id="content">
+            <div class="barra">
+              <h1 id="titular">Uriel - Horario</h1>
+            </div>
+            <div class="tabler">
+              <table id="tabla" class="table">
+                <thead class="titulo">
+                  <tr>
+                    <td>Dia</td>
+                    <td>Entrada</td>
+                    <td>Salida</td>
+                    <td>Tiempo</td>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="botones">
+              <button id="bt_entrada" class="btn btn-default myButton">Entrada</button>
+              <button id="bt_salida" class="btn btn-default myButton">Salida</button>
+          </div>
     </div>
-    <div class="botones">
-        <button id="bt_entrada" class="btn btn-default myButton">Entrada</button>
-        <button id="bt_salida" class="btn btn-default myButton">Salida</button>
+    <div id="cam" class="padre">
+        <div class="camara">
+            <div id="qrcodescanner"></div>
+            <div id="message"></div>
+        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
 	  <script>
