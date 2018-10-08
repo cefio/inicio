@@ -116,4 +116,46 @@ h1{
 	position:relative;
 	top:1px;
 }
-
+.Buttonqr {
+	background-color:#ff0000;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #8c0000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #662828;
+}
+.Buttonqr:hover {
+	background-color:#b51717;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 84px;
+    height: 84px;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.ico{
+    background:url(../img/qr-code.png) left top; 
+    width:64px; 
+    height:64px;
+    display: block;
+    float: left;
+}
