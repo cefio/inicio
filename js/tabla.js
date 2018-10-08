@@ -23,7 +23,7 @@ var ultima = new Array();
 
 	});
 	function iniciar(t){
-		alert("codigo Aceptado - "+t);
+		alert("codigo aceptado - "+t);
 		document.getElementById("titular").innerHTML = t +" - Horario";
 	}
 	function obtenertabla(){
