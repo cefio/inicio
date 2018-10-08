@@ -22,6 +22,20 @@ var ultima = new Array();
 		
 
 	});
+	function calcularhoras(){
+		var horast = new Array();
+		var total;
+		$('#tabla tbody tr').each(function(){
+			$(this).find('td').eq(3).each(function () {
+				horast.push($(this).text());
+            })
+		});
+		total=horast[0];
+		for(var i=1;i < horast.length;i++){
+			total = sumarhoras(total,horast[i]);
+		}
+		document.getElementById("hrt").innerHTML = "Horas totales: " + total;
+	}
 	function iniciar(t){
 		alert("codigo aceptado - "+t);
 		document.getElementById("titular").innerHTML = t +" - Horario";
@@ -107,13 +121,13 @@ var ultima = new Array();
 		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
 		ultima[3]=tiempo;
 	}
-	function sumarhoras(){
-		var hora1 = (ultima[1]).split(":"),hora2 = (ultima[2]).split(":"),t1 = new Date(),t2 = new Date();
+	function sumarhoras(hr1,hr2){
+		var hora1 = hr1.split(":"),hora2 = hr2.split(":"),t1 = new Date(),t2 = new Date();
 		t1.setHours(hora1[0], hora1[1], hora1[2]);
 		t2.setHours(hora2[0], hora2[1], hora2[2]);
-		t1.setHours(t2.getHours() - t1.getHours(), t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
-		//var tiempo = "La diferencia es de: " + (t1.getHours() ? t1.getHours() + (t1.getHours() > 1 ? " horas" : " hora") : "") + (t1.getMinutes() ? ", " + t1.getMinutes() + (t1.getMinutes() > 1 ? " minutos" : " minuto") : "") + (t1.getSeconds() ? (t1.getHours() || t1.getMinutes() ? " y " : "") + t1.getSeconds() + (t1.getSeconds() > 1 ? " segundos" : " segundo") : "");
-		ultima[3]=tiempo;
+		t1.setHours(t2.getHours() + t1.getHours(), t2.getMinutes() + t1.getMinutes(), t2.getSeconds() + t1.getSeconds());
+		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		return tiempo;
 	}
 
 	function datos_ultima(){
