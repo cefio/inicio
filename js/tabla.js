@@ -5,34 +5,6 @@ var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GOzXz8gm3tGlkiINj33X6n";
 var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var ultima = new Array();
-	window.onload = function() {
-		QRCodeScanner({
-		  element: document.getElementById('qrcodescanner'),
-		  width: 350,
-		  height: 250,
-		  onScanSuccess: function(result) {
-			
-			if(result == uriel){
-				reftabla = 'Uriel/tabla';
-				refestado = 'Uriel/estado';
-				obtenerestado();
-				obtenertabla();
-				iniciar("Uriel");
-				borrarcamara();
-			}
-			if(result == jessica){
-				reftabla = 'Jessica/tabla';
-				refestado = 'Jessica/estado';
-				obtenerestado();
-				obtenertabla();
-				iniciar("Jessica");
-				borrarcamara();
-			}
-		  },
-		  onScanError: function(error) {
-		  }
-		});
-	  }
 	$(document).ready(function(){
 
 		$('#bt_entrada').click(function(){
@@ -173,3 +145,33 @@ var ultima = new Array();
 				$(this).remove();
 		});
 	}
+    function openQRCamera(node) {
+		var reader = new FileReader();
+		reader.onload = function() {
+		  node.value = "";
+		  qrcode.callback = function(res) {
+			if(res instanceof Error) {
+			  alert("No se detecto ningun QR vuelva a intentarlo");
+			} else {
+				if(res == uriel){
+					reftabla = 'Uriel/tabla';
+					refestado = 'Uriel/estado';
+					obtenerestado();
+					obtenertabla();
+					iniciar("Uriel");
+					borrarcamara();
+				}
+				if(res == jessica){
+					reftabla = 'Jessica/tabla';
+					refestado = 'Jessica/estado';
+					obtenerestado();
+					obtenertabla();
+					iniciar("Jessica");
+					borrarcamara();
+				}
+			}
+		  };
+		  qrcode.decode(reader.result);
+		};
+		reader.readAsDataURL(node.files[0]);
+	  }
