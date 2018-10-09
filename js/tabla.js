@@ -34,7 +34,7 @@ var ultima = new Array();
 		for(var i=1;i < horast.length;i++){
 			total = sumarhoras(total,horast[i]);
 		}
-		document.getElementById("hrt").innerHTML = "Horas totales: " + total;
+		document.getElementById("hrt").innerHTML = total;
 	}
 	function iniciar(t){
 		alert("codigo aceptado - "+t);
