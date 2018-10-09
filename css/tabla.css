@@ -148,7 +148,9 @@ h1{
 	text-shadow:0px 1px 0px #662828;
 }
 .Buttonqr:hover {
-	background-color:#b51717;
+    background-color:#b51717;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
 .fileUpload {
     position: relative;
@@ -174,4 +176,6 @@ h1{
     height:64px;
     display: block;
     float: left;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
