@@ -129,7 +129,6 @@ var ultima = new Array();
 		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
 		return tiempo;
 	}
-
 	function datos_ultima(){
 		$('#ultima td').each(function(indice){			
 			ultima[indice] = $(this).text();
