@@ -111,6 +111,7 @@ var ultima = new Array();
 			estado="true";
 			firebase.database().ref(refestado).set(estado);
 		}
+		calcularhoras();
 	}
 	function restahoras(){
 		var hora1 = (ultima[1]).split(":"),hora2 = (ultima[2]).split(":"),t1 = new Date(),t2 = new Date();
