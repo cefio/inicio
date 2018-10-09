@@ -45,8 +45,24 @@
     align-items: center;
   }
   
-.camara{
-    background: #000000;
+.ht{
+    display:scroll;
+    position:fixed;
+    bottom:10px;
+    left:0px;
+    background: #00fc3f;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	display:inline-block;
+	color:black;
+	font-family:Arial;
+	font-size:14px;
+	padding:16px 31px;
+	text-decoration:none;
+}
+.ht h6{
+    margin: 0;
 }
 .titulo{
     background: #7f0000;
