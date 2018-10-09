@@ -83,6 +83,7 @@ var ultima = new Array();
 			}
 			i=i+4;
 		}
+		calcularhoras();
 	}
 	function entrada(){
 		var fecha = new Date();
