@@ -1,6 +1,7 @@
 var estado;
 var reftabla;
 var refestado;
+var refsalario;
 var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GOzXz8gm3tGlkiINj33X6n";
 var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
@@ -19,6 +20,9 @@ var ultima = new Array();
 			//reiniciar();
 			guardararchivo();
 		});
+		$('#horat').click(function(){
+			salario();
+		});
 		
 
 	});
@@ -34,7 +38,7 @@ var ultima = new Array();
 		for(var i=1;i < horast.length;i++){
 			total = sumarhoras(total,horast[i]);
 		}
-		document.getElementById("hrt").innerHTML = total;
+		document.getElementById("horat").innerHTML =  total;
 	}
 	function iniciar(t){
 		alert("codigo aceptado - "+t);
@@ -131,6 +135,59 @@ var ultima = new Array();
 		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
 		return tiempo;
 	}
+	function salario(){
+		var horastl = document.getElementById("horat").innerHTML;
+		var t1 = new Date();
+		horastl = horastl.split(":");
+		t1.setHours(horastl[0],horastl[1],horastl[2]);
+		sal=(t1.getHours()*18)+((t1.getMinutes()/60)*18);
+		alert(sal);
+		var r = confirm("¿desea limpiar?");
+		if(r == true){
+			if(estado == "false"){
+				alert("registre su salida");
+			}else{
+				limpiar();
+				firebase.database().ref(refsalario).push({salario: sal})
+			}
+		}else{
+			
+		}
+	}
+
+	function openQRCamera(node) {
+		var reader = new FileReader();
+		reader.onload = function() {
+		  node.value = "";
+		  qrcode.callback = function(res) {
+			if(res instanceof Error) {
+			  alert("No se detecto ningun QR vuelva a intentarlo");
+			} else {
+				if(res == uriel){
+					reftabla = 'Uriel/tabla';
+					refestado = 'Uriel/estado';
+					refsalario= 'Salarios/Uriel'
+					obtenerestado();
+					obtenertabla();
+					iniciar("Uriel");
+					borrarcamara();
+				}
+				if(res == jessica){
+					reftabla = 'Jessica/tabla';
+					refestado = 'Jessica/estado';
+					refsalario= 'Salarios/Jessica'
+					obtenerestado();
+					obtenertabla();
+					iniciar("Jessica");
+					borrarcamara();
+				}
+			}
+		  };
+		  qrcode.decode(reader.result);
+		};
+		reader.readAsDataURL(node.files[0]);
+	  }
+
 	function datos_ultima(){
 		$('#ultima td').each(function(indice){			
 			ultima[indice] = $(this).text();
@@ -158,35 +215,7 @@ var ultima = new Array();
     function limpiar(){
 		$('#tabla tbody tr').each(function(){
 				$(this).remove();
+				firebase.database().ref(reftabla).set("");
+				firebase.database().ref(refestado).set("true");
 		});
 	}
-    function openQRCamera(node) {
-		var reader = new FileReader();
-		reader.onload = function() {
-		  node.value = "";
-		  qrcode.callback = function(res) {
-			if(res instanceof Error) {
-			  alert("No se detecto ningun QR vuelva a intentarlo");
-			} else {
-				if(res == uriel){
-					reftabla = 'Uriel/tabla';
-					refestado = 'Uriel/estado';
-					obtenerestado();
-					obtenertabla();
-					iniciar("Uriel");
-					borrarcamara();
-				}
-				if(res == jessica){
-					reftabla = 'Jessica/tabla';
-					refestado = 'Jessica/estado';
-					obtenerestado();
-					obtenertabla();
-					iniciar("Jessica");
-					borrarcamara();
-				}
-			}
-		  };
-		  qrcode.decode(reader.result);
-		};
-		reader.readAsDataURL(node.files[0]);
-	  }
