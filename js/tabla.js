@@ -100,6 +100,7 @@ var ultima = new Array();
 			firebase.database().ref(refestado).set(estado);
 		}
 		$('#tabla').append(fila);
+		location.reload();
 	}
 	function salida(){
 		datos_ultima();
@@ -117,6 +118,7 @@ var ultima = new Array();
 			firebase.database().ref(refestado).set(estado);
 		}
 		calcularhoras();
+		location.reload();
 	}
 	function restahoras(){
 		var hora1 = (ultima[1]).split(":"),hora2 = (ultima[2]).split(":"),t1 = new Date(),t2 = new Date();
