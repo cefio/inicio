@@ -182,7 +182,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Jessica");
 					borrarcamara();
-				}else{alert("usuario incorrecto")}}
+				}else{alert("usuario incorrecto: "+res)}}
 			}
 		  };
 		  qrcode.decode(reader.result);
