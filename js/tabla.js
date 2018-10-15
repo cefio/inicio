@@ -2,7 +2,7 @@ var estado;
 var reftabla;
 var refestado;
 var refsalario;
-var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GOzXz8gm3tGlkiINj33X6n";
+var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GGzXz8gm3tGlkiINj33X6n";
 var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var ultima = new Array();
