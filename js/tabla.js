@@ -173,7 +173,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Uriel");
 					borrarcamara();
-				}
+				}else{
 				if(res == jessica){
 					reftabla = 'Jessica/tabla';
 					refestado = 'Jessica/estado';
@@ -182,7 +182,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Jessica");
 					borrarcamara();
-				}
+				}else{alert("usuario incorrecto")}}
 			}
 		  };
 		  qrcode.decode(reader.result);
