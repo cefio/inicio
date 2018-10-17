@@ -81,8 +81,25 @@
     cursor: pointer;
     background: #00c732;
 }
-.ht h6{
-    margin: 0;
+.pagos{
+    display:scroll;
+    position:fixed;
+    top: 10px;
+    right:0px;
+    background: #fceb00;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	display:inline-block;
+	color:black;
+	font-family:Arial;
+	font-size:14px;
+	padding:16px 31px;
+	text-decoration:none;
+}
+.pagos:hover{
+    cursor: pointer;
+    background: #afa402;
 }
 .barra{
     background: #b71c1c;
