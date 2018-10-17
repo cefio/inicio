@@ -144,17 +144,6 @@ var ultima = new Array();
 		t1.setHours(horastl[0],horastl[1],horastl[2]);
 		sal=(t1.getHours()*18)+((t1.getMinutes()/60)*18);
 		alert(sal);
-		var r = confirm("¿desea limpiar?");
-		if(r == true){
-			if(estado == "false"){
-				alert("registre su salida");
-			}else{
-				limpiar();
-				firebase.database().ref(refsalario).push({salario: sal})
-			}
-		}else{
-			
-		}
 	}
 
 	function openQRCamera(node) {
