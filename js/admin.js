@@ -13,12 +13,12 @@ var ultima = new Array();
 		borrarcamara();
 
 		$('#bt_entrada').click(function(){
-			$('#bt_horat').attr('disabled', false);
+			$('#horat').attr('disabled', false);
 			limpiart();
 			entrada();
 		});
 		$('#bt_salida').click(function(){
-			$('#bt_horat').attr('disabled', false);
+			$('#horat').attr('disabled', false);
 			limpiart();
 			salida();
 		});
@@ -26,7 +26,7 @@ var ultima = new Array();
 			salario();
 		});
 		$('#pagost').click(function(){
-			$('#bt_horat').attr('disabled', true);
+			$('horat').attr('disabled', true);
 			cambiar();
 			recu();
 			rellenarpagos();
