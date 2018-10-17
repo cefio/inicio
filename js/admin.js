@@ -26,7 +26,7 @@ var ultima = new Array();
 			salario();
 		});
 		$('#pagost').click(function(){
-			$('horat').attr('disabled', true);
+			$('#horat').attr('disabled', true);
 			cambiar();
 			recu();
 			rellenarpagos();
