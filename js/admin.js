@@ -12,16 +12,6 @@ var ultima = new Array();
 		iniciar("Uriel");
 		borrarcamara();
 
-		$('#bt_entrada').click(function(){
-			$('#horat').attr('disabled', false);
-			limpiart();
-			entrada();
-		});
-		$('#bt_salida').click(function(){
-			$('#horat').attr('disabled', false);
-			limpiart();
-			salida();
-		});
 		$('#horat').click(function(){
 			salario();
 		});
@@ -30,6 +20,34 @@ var ultima = new Array();
 			cambiar();
 			recu();
 			rellenarpagos();
+		});
+		$('#boxE').change(function(){
+			var opcion = $("#boxE option:selected").val();
+			$('#horat').attr('disabled', false);
+			if(opcion == "uriel"){
+				reftabla = 'Uriel/tabla';
+				refestado = 'Uriel/estado';
+				refsalario= 'Salarios/Uriel'
+				cambiar2();
+				obtenertabla();
+				iniciar("Uriel");
+			}
+			if(opcion == "jessica"){
+				reftabla = 'Jessica/tabla';
+				refestado = 'Jessica/estado';
+				refsalario= 'Salarios/Jessica'
+				obtenertabla();
+				cambiar2();
+				iniciar("Jessica");
+			}
+			if(opcion == "carlos"){
+				reftabla = 'Carlos/tabla';
+				refestado = 'Carlos/estado';
+				refsalario= 'Salarios/Carlos'
+				obtenertabla();
+				cambiar2();
+				iniciar("Carlos");
+			}
 		});
 		
 
@@ -64,7 +82,7 @@ var ultima = new Array();
 		document.getElementById("horat").innerHTML =  total;
 	}
 	function iniciar(t){
-		document.getElementById("titular").innerHTML = t +" - Horario";
+		document.getElementById("titular").innerHTML = t;
 	}
 	function obtenertabla(){
 		firebase.database().ref(reftabla).once('value').then(function(snapshot) {
@@ -94,23 +112,6 @@ var ultima = new Array();
 			i=i+4;
 		}
 		calcularhoras();
-	}
-	function entrada(){
-		reftabla = 'Jessica/tabla';
-		refestado = 'Jessica/estado';
-		refsalario= 'Salarios/Jessica'
-		obtenertabla();
-		cambiar2();
-		iniciar("Jessica");
-		
-	}
-	function salida(){
-		reftabla = 'Uriel/tabla';
-		refestado = 'Uriel/estado';
-		refsalario= 'Salarios/Uriel'
-		cambiar2();
-		obtenertabla();
-		iniciar("Uriel");
 	}
 	function salario(){
 		var horastl = document.getElementById("horat").innerHTML;
