@@ -101,6 +101,26 @@
     cursor: pointer;
     background: #afa402;
 }
+.box{
+    background-color: #0d47a1;
+    padding: 7px;
+    border-radius: 28px;
+}
+.box select{
+    text-align-last:center;
+    background-color: #0d47a1;
+    border: #0d47a1;
+    color: white;
+    min-width: 130px;
+    width: 100%;
+    height: 40px;
+}
+.box select:active,.box select:focus{
+    outline: none;
+}
+.ht h6{
+    margin: 0;
+}
 .barra{
     background: #b71c1c;
     width: 100%;
