@@ -2,7 +2,8 @@ var estado;
 var reftabla;
 var refestado;
 var refsalario;
-var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GGzXz8gm3tGlkiINj33X6n";
+var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GOzXz8gm3tGlkiINj33X6n";
+var carlos="UlRcEgXHSvwSMkCjhS3RoyuEwprGQKn6WU4tEyHAiCs3iOFEt5FfOvjS/n2pIIpA";
 var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var ultima = new Array();
@@ -66,9 +67,6 @@ var ultima = new Array();
 			$('#bt_entrada').attr('disabled', true);
 		}
 	}
-	function reiniciar(){
-		localStorage.clear();
-	}
 	function rellenartabla(tabla){
 		var i=0;
 		if(tabla==""){
@@ -100,7 +98,6 @@ var ultima = new Array();
 			firebase.database().ref(refestado).set(estado);
 		}
 		$('#tabla').append(fila);
-		location.reload();
 	}
 	function salida(){
 		datos_ultima();
@@ -118,7 +115,24 @@ var ultima = new Array();
 			firebase.database().ref(refestado).set(estado);
 		}
 		calcularhoras();
-		location.reload();
+	}
+	function salidav(str){
+		var dat = str.split(",");
+		console.log(dat);
+		dat[3]=restahorasv(dat);
+		var fila='<tr><td>'+dat[0]+'</td><td>'+dat[1]+'</td><td>'+dat[2]+'</td><<td>'+dat[3]+'</td></tr>';
+		$('#tabla').append(fila);
+		guardar();
+		calcularhoras();
+	}
+	function restahorasv(dat){
+		var hora1 = (dat[1]).split(":"),hora2 = (dat[2]).split(":"),t1 = new Date(),t2 = new Date();
+		t1.setHours(hora1[0], hora1[1], hora1[2]);
+		t2.setHours(hora2[0], hora2[1], hora2[2]);
+		t1.setHours(t2.getHours() - t1.getHours(), t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+		//var tiempo = "La diferencia es de: " + (t1.getHours() ? t1.getHours() + (t1.getHours() > 1 ? " horas" : " hora") : "") + (t1.getMinutes() ? ", " + t1.getMinutes() + (t1.getMinutes() > 1 ? " minutos" : " minuto") : "") + (t1.getSeconds() ? (t1.getHours() || t1.getMinutes() ? " y " : "") + t1.getSeconds() + (t1.getSeconds() > 1 ? " segundos" : " segundo") : "");
+		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		return tiempo;
 	}
 	function restahoras(){
 		var hora1 = (ultima[1]).split(":"),hora2 = (ultima[2]).split(":"),t1 = new Date(),t2 = new Date();
@@ -144,6 +158,17 @@ var ultima = new Array();
 		t1.setHours(horastl[0],horastl[1],horastl[2]);
 		sal=(t1.getHours()*18)+((t1.getMinutes()/60)*18);
 		alert(sal);
+		var r = confirm("¿desea limpiar?");
+		if(r == true){
+			if(estado == "false"){
+				alert("registre su salida");
+			}else{
+				limpiar();
+				firebase.database().ref(refsalario).push({salario: sal})
+			}
+		}else{
+			
+		}
 	}
 
 	function openQRCamera(node) {
@@ -154,6 +179,15 @@ var ultima = new Array();
 			if(res instanceof Error) {
 			  alert("No se detecto ningun QR vuelva a intentarlo");
 			} else {
+				if(res == carlos){
+					reftabla = 'Carlos/tabla';
+					refestado = 'Carlos/estado';
+					refsalario= 'Salarios/Carlos'
+					obtenerestado();
+					obtenertabla();
+					iniciar("Carlos");
+					borrarcamara();
+				}
 				if(res == uriel){
 					reftabla = 'Uriel/tabla';
 					refestado = 'Uriel/estado';
@@ -162,7 +196,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Uriel");
 					borrarcamara();
-				}else{
+				}
 				if(res == jessica){
 					reftabla = 'Jessica/tabla';
 					refestado = 'Jessica/estado';
@@ -171,7 +205,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Jessica");
 					borrarcamara();
-				}else{alert("usuario incorrecto: "+res)}}
+				}
 			}
 		  };
 		  qrcode.decode(reader.result);
@@ -196,12 +230,6 @@ var ultima = new Array();
 		});
 		tabla = tabla.slice(0,-1);
 		firebase.database().ref(reftabla).set(tabla);
-	}
-	function guardararchivo(){
-		var fso  = new XMLHttpRequest("Scripting.FileSystemObject"); 
-   		var fh = fso.CreateTextFile("Test.txt", true); 
-   		fh.WriteLine("Some text goes here..."); 
-   		fh.Close(); 
 	}
     function limpiar(){
 		$('#tabla tbody tr').each(function(){
