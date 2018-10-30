@@ -187,7 +187,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Carlos");
 					borrarcamara();
-				}
+				}else{
 				if(res == uriel){
 					reftabla = 'Uriel/tabla';
 					refestado = 'Uriel/estado';
@@ -196,7 +196,7 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Uriel");
 					borrarcamara();
-				}
+				}else{
 				if(res == jessica){
 					reftabla = 'Jessica/tabla';
 					refestado = 'Jessica/estado';
@@ -205,7 +205,10 @@ var ultima = new Array();
 					obtenertabla();
 					iniciar("Jessica");
 					borrarcamara();
+				}else{
+				  alert(res);
 				}
+				}}
 			}
 		  };
 		  qrcode.decode(reader.result);
