@@ -43,7 +43,7 @@ var ultima = new Array();
 	}
 	function iniciar(t){
 		alert("codigo aceptado - "+t);
-		document.getElementById("titular").innerHTML = t +" - Horario";
+		document.getElementById("titular").innerHTML = t;
 	}
 	function obtenertabla(){
 		firebase.database().ref(reftabla).once('value').then(function(snapshot) {
