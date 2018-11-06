@@ -1,80 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#7f0000"/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>CEFIO - Tabla</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/tabla.css" rel="stylesheet">
-
-  </head>
-
-  <body id="page-top">
-    <div id="contenido" class="contenido">
-        <div id="content">
-            <div class="barra">
-              <h1 id="titular">Uriel - Horario</h1>
-            </div>
-            <div class="tabler">
-              <table id="tabla" class="table">
-                <thead class="titulo">
-                  <tr>
-                    <td>Dia</td>
-                    <td>Entrada</td>
-                    <td>Salida</td>
-                    <td>Tiempo</td>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-          </div>
-          <div class="botones">
-              <button id="bt_entrada" class="btn btn-default myButton">Entrada</button>
-              <button id="bt_salida" class="btn btn-default myButton">Salida</button>
-          </div>
-	  <button id="horat" class="btn btn-default ht">Horas totales:</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <!-- Custom styles for this template -->
+  <link href="css/tabla.1.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Horario</title>
+</head>
+<body>
+  <div class="barra">
+    <h1 id="titular">Horario-Trabajador</h1>
+  </div>
+  <div class="tabler ">
+      <table id="tabla" class="table z-depth-3">
+        <thead class="titulo">
+          <tr>
+            <td >Dia</td>
+            <td >Entrada</td>
+            <td >Salida</td>
+            <td >Tiempo</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
+    <div class="botones">
+        <button id="bt_entrada" class="btn myButton blue darken-4"><i class="material-icons left">call_received</i>Entrada</button>
+        <button id="bt_salida" class="btn myButton blue darken-4"> <i class="material-icons left">call_made</i>Salida</button>
+    </div>
+    <button class="btn myButton green ht"><i class="material-icons left">hourglass_full</i> <a href="#" id="horat" class="white-text" >hgfsa</a> </button>
     <div id="cam" class="padre">
         <div class="fileUpload Buttonqr">
             <span class="ico"></span>
             <input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1 class="upload"></label>
         </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-	  <script>
-	    // Initialize Firebase
-	    var config = {
-		  apiKey: "AIzaSyApHdQx5nfBK9kPlhnGw3tSZ7yWsIcnjks",
-		  authDomain: "cefio-8a94c.firebaseapp.com",
-		  databaseURL: "https://cefio-8a94c.firebaseio.com",
-		  projectId: "cefio-8a94c",
-		  storageBucket: "cefio-8a94c.appspot.com",
-		  messagingSenderId: "728470860279"
-	    };
-	    firebase.initializeApp(config);
-	  </script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+        </div>
+        <!--Firebase-->
+        <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+          apiKey: "AIzaSyApHdQx5nfBK9kPlhnGw3tSZ7yWsIcnjks",
+          authDomain: "cefio-8a94c.firebaseapp.com",
+          databaseURL: "https://cefio-8a94c.firebaseio.com",
+          projectId: "cefio-8a94c",
+          storageBucket: "cefio-8a94c.appspot.com",
+          messagingSenderId: "728470860279"
+          };
+          firebase.initializeApp(config);
+      </script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+      <!-- Plugin JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>      
 
-    <!-- Custom scripts for this template -->
-    <script src="js/tabla.js"></script>
-    <script src="https://webqr.com/llqrcode.js"></script>
-    <script src="js/camara.js"></script>
-  </body>
-
+      <!-- Custom scripts for this template -->
+      <script src="js/tabla.js"></script>
+      <script src="https://webqr.com/llqrcode.js"></script>
+</body>
 </html>
