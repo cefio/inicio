@@ -92,7 +92,7 @@ var ultima = new Array();
 	}
 	function borrarcamara(){
 		$("#cam").remove();
-		document.getElementById("contenido").style.display = "block";
+		//document.getElementById("contenido").style.display = "block";
 	}
 	function rellenartabla(tabla){
 		var i=0;
