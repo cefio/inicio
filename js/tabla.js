@@ -52,7 +52,7 @@ var ultima = new Array();
 	}
 	function borrarcamara(){
 		$("#cam").remove();
-		document.getElementById("contenido").style.display = "block";
+		//document.getElementById("contenido").style.display = "block";
 	}
 	function obtenerestado(){
 		firebase.database().ref(refestado).once('value').then(function(snapshot) {
