@@ -8,6 +8,7 @@ var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','
 var dat = new Array();
 var ultima = new Array();
 	$(document).ready(function(){
+		M.AutoInit();
 		obtenertabla();
 		iniciar("Uriel");
 		borrarcamara();
