@@ -3,7 +3,7 @@ body{
 }
 .barra{
     background-color: #b71c1c;
-    height: 250px;
+    height: 200px;
 }
 h1{
     margin: 0;
@@ -15,7 +15,10 @@ h1{
     color: white;
 }
 .tabler{
-    margin-top: -180px;
+    margin-top: -130px;
+    padding: 10px;
+}
+#tabla td{
     padding: 10px;
 }
 tbody{
@@ -26,6 +29,32 @@ tbody{
     position:fixed;
     bottom:10px;
     right:10px;
+}
+.box{
+    border-radius: 48px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display:scroll;
+    position:fixed;
+    bottom:10px;
+    right:10px;
+}
+.box .input-field{
+    margin: 0px;
+}
+.select-dropdown {
+    
+    margin: 0px !important;
+}
+.pagos{
+    display:scroll;
+    position:fixed;
+    bottom: 10px;
+    left:10px;
+}
+#ultima{
+    background: green;
+    color: #ffffff;
 }
 .myButton{
     border-radius: 28px;
