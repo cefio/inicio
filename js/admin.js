@@ -120,7 +120,7 @@ var ultima = new Array();
 		var t2 = new Date();
 		horastl = horastl.split(":");
 		t1.setHours(horastl[0],horastl[1],horastl[2]);
-		sal=(t1.getHours()*18)+((t1.getMinutes()/60)*18);
+		sal=(t1.getHours()*20)+((t1.getMinutes()/60)*20);
 		alert(sal);
 		var r = confirm("¿desea limpiar?");
 		if(r == true){
