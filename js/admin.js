@@ -7,54 +7,90 @@ var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var dat = new Array();
 var ultima = new Array();
+
 	$(document).ready(function(){
 		M.AutoInit();
+		var elems = document.querySelectorAll('.timepicker');
+    	var instances = M.Timepicker.init(elems, {
+			twelveHour:false
+		});
+		var elems = document.querySelectorAll('.fixed-action-btn');
+		var instances = M.FloatingActionButton.init(elems, {
+			hoverEnabled: false
+		});
+		
 		obtenertabla();
+		
 		iniciar("Uriel");
-		borrarcamara();
+		
+		
 
 		$('#horat').click(function(){
 			salario();
 		});
-		$('#pagost').click(function(){
-			$('#horat').attr('disabled', true);
-			cambiar();
-			recu();
-			rellenarpagos();
-		});
-		$('#boxE').change(function(){
-			var opcion = $("#boxE option:selected").val();
-			$('#horat').attr('disabled', false);
-			if(opcion == "uriel"){
-				reftabla = 'Uriel/tabla';
+		
+		$('#uriel').click(function(){
+			if ($('#pagost').find('i').text() == 'date_range'){
+				$('#pagost').find('i').text('monetization_on')
+			}
+			reftabla = 'Uriel/tabla';
 				refestado = 'Uriel/estado';
-				refsalario= 'Salarios/Uriel'
+				refsalario= 'Salarios/Uriel';
 				cambiar2();
 				obtenertabla();
 				iniciar("Uriel");
+		});
+		$('#jessica').click(function(){
+			if ($('#pagost').find('i').text() == 'date_range'){
+				$('#pagost').find('i').text('monetization_on')
 			}
-			if(opcion == "jessica"){
-				reftabla = 'Jessica/tabla';
+			reftabla = 'Jessica/tabla';
 				refestado = 'Jessica/estado';
 				refsalario= 'Salarios/Jessica'
 				obtenertabla();
 				cambiar2();
 				iniciar("Jessica");
+		});
+		$('#carlos').click(function(){
+			if ($('#pagost').find('i').text() == 'date_range'){
+				$('#pagost').find('i').text('monetization_on')
 			}
-			if(opcion == "carlos"){
-				reftabla = 'Carlos/tabla';
+			reftabla = 'Carlos/tabla';
 				refestado = 'Carlos/estado';
 				refsalario= 'Salarios/Carlos'
 				obtenertabla();
 				cambiar2();
 				iniciar("Carlos");
-			}
 		});
+		$('#pagost').click(function(){
+			if ($(this).find('i').text() == 'monetization_on'){
+				$(this).find('i').text('date_range');
+				cambiar();
+				recu();
+				rellenarpagos();
+			} else {
+				$(this).find('i').text('monetization_on');
+				obtenertabla();
+				cambiar2();
+			}
+			
+		});
+		$('#cantidad').keyup(function(){
+			var sal,pago;
+			var horastl = document.getElementById("horatt").innerHTML;
+			var t1 = new Date();
+			horastl = horastl.split(":");
+			t1.setHours(horastl[0],horastl[1],horastl[2]);
+			pago= Number($('#cantidad').val());
+			sal=(t1.getHours()*pago)+((t1.getMinutes()/60)*pago);
+			document.getElementById("ho").innerHTML =  sal;
+		});
+		
 		
 
 	});
+	
 	function rellenarpagos(datt){
-		console.log(datt);
 		var tmp;
 		for(var i = 0;i<datt.length;i++){
 			tmp = datt[i].salario.split("-");
@@ -80,7 +116,7 @@ var ultima = new Array();
 		for(var i=1;i < horast.length;i++){
 			total = sumarhoras(total,horast[i]);
 		}
-		document.getElementById("horat").innerHTML =  total;
+		document.getElementById("horatt").innerHTML =  total;
 	}
 	function iniciar(t){
 		document.getElementById("titular").innerHTML = t;
@@ -92,7 +128,7 @@ var ultima = new Array();
 	}
 	function borrarcamara(){
 		$("#cam").remove();
-		//document.getElementById("contenido").style.display = "block";
+		document.getElementById("contenido").style.display = "block";
 	}
 	function rellenartabla(tabla){
 		var i=0;
@@ -115,27 +151,18 @@ var ultima = new Array();
 		calcularhoras();
 	}
 	function salario(){
-		var horastl = document.getElementById("horat").innerHTML;
-		var t1 = new Date();
-		var t2 = new Date();
-		horastl = horastl.split(":");
-		t1.setHours(horastl[0],horastl[1],horastl[2]);
-		sal=(t1.getHours()*20)+((t1.getMinutes()/60)*20);
-		alert(sal);
-		var r = confirm("¿desea limpiar?");
-		if(r == true){
-				limpiar();
-				sal = "$"+sal+"-"+fecha();
-				firebase.database().ref(refsalario).push({salario: sal})
+		var sal = document.getElementById("ho").innerHTML;
+		limpiar();
+		sal = "$"+sal+"-"+fecha();
+		firebase.database().ref(refsalario).push({salario: sal})
 		
-		}
 	}
 	function sumarhoras(hr1,hr2){
 		var hora1 = hr1.split(":"),hora2 = hr2.split(":"),t1 = new Date(),t2 = new Date();
 		t1.setHours(hora1[0], hora1[1], hora1[2]);
 		t2.setHours(hora2[0], hora2[1], hora2[2]);
 		t1.setHours(t2.getHours() + t1.getHours(), t2.getMinutes() + t1.getMinutes(), t2.getSeconds() + t1.getSeconds());
-		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		var tiempo = (t1.getHours() > 9 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
 		return tiempo;
 	}
 	function fecha(){
@@ -176,6 +203,7 @@ var ultima = new Array();
 	}
 	
     function limpiar(){
+		calcularhoras();
 		$('#tabla tbody tr').each(function(){
 				$(this).remove();
 		});
