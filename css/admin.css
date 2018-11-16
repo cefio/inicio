@@ -1,0 +1,46 @@
+.buttom{
+        display:scroll;
+        position:fixed;
+        bottom:0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+}
+.nomargin{
+    margin: 0px;
+}
+.nopading{
+    padding: 0 !important;
+}
+
+#ultima{
+    color: #1b5e20;
+    font-weight: bold;
+    border: solid #1b5e20;
+}
+
+.rel{
+    margin-bottom: 32px;
+}
+.full{
+    width: 100%;
+}
+.boton{
+    text-align: center;
+    color: #1b5e20;
+}
+/* label color */
+.input-field label {
+    color: #000;
+  }
+  /* label focus color */
+  .input-field input[type=number]:focus + label  {
+    color: #b71c1c !important;
+  }
+  /* label underline focus color */
+  .input-field input[type=number]:focus  {
+    border-bottom: 1px solid #b71c1c !important; 
+    box-shadow: 0 1px 0 0 #b71c1c !important;
+  }
+  .input-field .prefix.active {
+    color: #b71c1c;
+  }
