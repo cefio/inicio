@@ -34,7 +34,10 @@ var ultima = new Array();
             guardar();;
 		});
 		$('#horat').click(function(){
-			salariocal();
+			salario();
+			$('#cantidad').val(null);
+			$('#ho').text("pago");
+
 		});
 		$('#redondear').click(function(){
 			salariocal();
@@ -46,6 +49,8 @@ var ultima = new Array();
 			}else{
 				str = $('#dia option:selected').text()+","+$('#horai').val()+":00,"+$('#horaf').val()+":00,00:00:00";
 				salidav(str);
+				$('#horai').val("");
+				$('#horaf').val("");
 				M.toast({html: '<p><i class="material-icons left green-text">done_all</i>Hora agregada</p>',displayLength:900});
 			}
 			var tabla = String(ordenar(matiztabla()));
@@ -206,10 +211,15 @@ var ultima = new Array();
 			M.toast({html: '<p><i class="material-icons left yellow-text">error</i>Cantidad vacia</p>',displayLength:900});
 		}else{
 			var sal = $('#ho').text();
-			limpiar();
-			sal = "$"+sal+"-"+fecha();
-			firebase.database().ref(refsalario).push({salario: sal})
-			M.toast({html: '<p><i class="material-icons left yellow-text">done_all</i>Salario agregado</p>',displayLength:900});
+			if(sal == "NaN"){
+				M.toast({html: '<p><i class="material-icons left yellow-text">error</i>No hay horas registradas</p>',displayLength:900});
+			}else{
+				limpiar();
+				sal = "$"+sal+"-"+fecha();
+				firebase.database().ref(refsalario).push({salario: sal})
+				M.toast({html: '<p><i class="material-icons left yellow-text">done_all</i>Salario agregado</p>',displayLength:900});
+			}
+			
 		}
 	}
 	function sumarhoras(hr1,hr2){
@@ -270,10 +280,10 @@ var ultima = new Array();
 	}
 	
     function limpiar(){
-		calcularhoras();
 		$('#tabla tbody tr').each(function(){
 				$(this).remove();
 		});
+		calcularhoras();
 		firebase.database().ref(reftabla).set("");
 		firebase.database().ref(refestado).set("true");
 	}
@@ -281,11 +291,8 @@ var ultima = new Array();
 		var dat = str.split(",");
 		dat[3]=restahorasv(dat);
 		var fila='<tr><td>'+dat[0]+'</td><td>'+dat[1]+'</td><td>'+dat[2]+'</td><<td>'+dat[3]+'</td></tr>';
-		if(ult==null){
-			$('#tabla').append(fila);
-		}else{
-			$('#ultima').before(fila);
-		}
+		$('#tabla').append(fila);
+		$('#ultima').before(fila);
 	}
 	function guardar(){
 		tabla ="";
