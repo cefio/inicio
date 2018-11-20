@@ -44,3 +44,9 @@
   .input-field .prefix.active {
     color: #b71c1c;
   }
+  .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #b71c1c !important;
+}
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #f44336 !important;
+}
