@@ -7,6 +7,7 @@ var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var dat = new Array();
 var ultima = new Array();
+var tr;
 
 	$(document).ready(function(){
 		M.AutoInit();
@@ -17,6 +18,10 @@ var ultima = new Array();
 		var elems = document.querySelectorAll('.fixed-action-btn');
 		var instances = M.FloatingActionButton.init(elems, {
 			hoverEnabled: false
+		});
+		var elem = document.querySelector('.collapsible.expandable');
+			var instance = M.Collapsible.init(elem, {
+			accordion: false
 		});
 		obtenerestado();
 		
@@ -39,6 +44,7 @@ var ultima = new Array();
 			$('#ho').text("pago");
 
 		});
+
 		$('#redondear').click(function(){
 			salariocal();
 		});
@@ -47,7 +53,7 @@ var ultima = new Array();
 			if($('#dia option:selected').text()==""||$('#horai').val()==""||$('#horaf').val()==""){
 				M.toast({html: '<p><i class="material-icons left yellow-text">error</i>Hay datos vacios</p>',displayLength:900});
 			}else{
-				str = $('#dia option:selected').text()+","+$('#horai').val()+":00,"+$('#horaf').val()+":00,00:00:00";
+				str = $('#dia option:selected').text()+","+$('#horai').val()+","+$('#horaf').val()+",00:00:00";
 				salidav(str);
 				$('#horai').val("");
 				$('#horaf').val("");
@@ -88,6 +94,10 @@ var ultima = new Array();
 				iniciar("Jessica");
 				obtenerestado();
 		});
+		$('.timepicker').on('change', function() {
+			let receivedVal = $(this).val();
+			$(this).val(receivedVal + ":00");
+		});
 		$('#carlos').click(function(){
 			if ($('#pagost').find('i').text() == 'date_range'){
 				$('#pagost').find('i').text('monetization_on')
@@ -103,22 +113,61 @@ var ultima = new Array();
 		$('#pagost').click(function(){
 			if ($(this).find('i').text() == 'monetization_on'){
 				$(this).find('i').text('date_range');
+				$(".tablah").removeClass("tablah");
 				cambiar();
 				recu();
 				rellenarpagos();
 			} else {
 				$(this).find('i').text('monetization_on');
+				$("tbody").addClass("tablah");
 				obtenertabla();
 				cambiar2();
 			}
 			
 		});
-		
 		$('#cantidad').keyup(function(){
 			salariocal();
 		});
-		
-		
+		$('#cambiar').click(function(){
+			var diaC,horaiC,horafC,horattl;
+			diaC=$('#dia-editar .select-wrapper input').val();
+			horaiC=$("#horai-editar").val();
+			horafC=$("#horaf-editar").val();
+			horattl =$('#sumahoras').text();
+			tr.children().eq(0).text(diaC);
+			tr.children().eq(1).text(horaiC);
+			tr.children().eq(2).text(horafC);
+			tr.children().eq(3).text(horattl);
+			guardar();
+		});
+		$("#tabla").on("click", ".tablah tr", function() {
+			M.Toast.dismissAll();
+			var toastHTML = '<span>Modificar fila</span><button id="borrar" class="btn-flat toast-action">Borrar</button><button id="editar" class="btn-flat toast-action modal-trigger" href="#modal3">Editar</button>';
+			M.toast({html: toastHTML, displayLength:2000});
+			var tds=[];
+			tr = $(this);
+			$(this).find("td").each(function(){
+				tds.push($(this).text());
+			});
+			$('#borrar').click(function(){
+				var r = confirm("¿Seguro quieres eliminar?");
+				if (r == true) {
+					tr.remove();
+					guardar();
+				} 
+				
+			});
+			$('#editar').click(function(){
+				$('#dia-editar .select-wrapper input').val(tds[0]);
+				$("#horai-editar").val(tds[1]);
+				$("#horaf-editar").val(tds[2]);
+				$('#sumahoras').text(restahorasv(tds));
+			});
+		  });
+		  $('#horai-editar, #horaf-editar').change(function(){
+			 var intps = ["nada",$("#horai-editar").val(),$("#horaf-editar").val()];
+			$('#sumahoras').text(restahorasv(intps));
+		  });
 
 	});
 	function obtenerestado(){
@@ -148,6 +197,14 @@ var ultima = new Array();
 		firebase.database().ref(refsalario).once('value').then(function(snapshot) {
 			rellenarpagos(Object.values(snapshot.val()));
 		  });
+	}
+	function retn(){
+		console.log($(this));
+	}
+	function eventotr(){
+		$('#tabla tbody tr').each(function(){
+			$(this).attr("onclick","retn()");
+		});
 	}
 	
 	function calcularhoras(){
@@ -308,7 +365,7 @@ var ultima = new Array();
 		t2.setHours(hora2[0], hora2[1], hora2[2]);
 		t1.setHours(t2.getHours() - t1.getHours(), t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
 		//var tiempo = "La diferencia es de: " + (t1.getHours() ? t1.getHours() + (t1.getHours() > 1 ? " horas" : " hora") : "") + (t1.getMinutes() ? ", " + t1.getMinutes() + (t1.getMinutes() > 1 ? " minutos" : " minuto") : "") + (t1.getSeconds() ? (t1.getHours() || t1.getMinutes() ? " y " : "") + t1.getSeconds() + (t1.getSeconds() > 1 ? " segundos" : " segundo") : "");
-		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		var tiempo = (t1.getHours() > 9 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 9? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 9 ? "" : "0")+t1.getSeconds();
 		return tiempo;
 	}
 	function restahoras(){
