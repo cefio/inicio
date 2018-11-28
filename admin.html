@@ -36,7 +36,7 @@
                       <td>Tiempo</td>
                     </tr>
                   </thead>
-                  <tbody></tbody>
+                  <tbody class="tablah"></tbody>
                 </table>
 
                 <div class="fixed-action-btn rel">
@@ -61,6 +61,39 @@
                       </div>
                       <div class="modal-footer white">
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Calcelar</a>
+                      </div>
+                    </div>
+                    
+                    <div id="modal3" class="modal bottom-sheet">
+                      <div class="modal-content">
+                        <div class="row">
+                          <div id="dia-editar" class="input-field col s12">
+                              <select >
+                                <option value="1">lunes</option>
+                                <option value="2">martes</option>
+                                <option value="3">miercoles</option>
+                                <option value="4">jueves</option>
+                                <option value="5">viernes</option>
+                                <option value="6">sabado</option>
+                              </select>
+                              <label>Dia:</label>
+                            </div>
+                          <div class="input-field col s6">
+                              <input placeholder="Entrada" id="horai-editar" type="text" readonly class="timepicker">
+                              <label for="horai">Entrada:</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Salida" id="horaf-editar" type="text" readonly class="timepicker">
+                                <label for="horaf">Salida:</label>
+                              </div>
+                              <div id="sumahoras" class="col s12 blue chip center-align white-text">
+                                Tag
+                              </div>
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                        <a id="cambiar" href="#!" class="modal-close waves-effect waves-green btn-flat">Cambiar</a>
                       </div>
                     </div>
                     <div id="modal2" class="modal">
@@ -110,8 +143,8 @@
             </div>
         </div>
         <div id="test2" class="col s12">
-            <ul class="collapsible">
-                <li>
+            <ul class="collapsible popout">
+                <li class="active gradient">
                   <div class="collapsible-header"><i class="material-icons">playlist_add</i>Agregar hora</div>
                   <div class="collapsible-body">
                     <div class="row">
@@ -138,8 +171,8 @@
                     </div>
                   </div>
                 </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">import_export</i>Agregar entrada o salida</div>
+                <li >
+                  <div class="collapsible-header"><i class="material-icons">import_export</i>Registrar entrada o salida</div>
                   <div class="collapsible-body">
                     <div class="row">
                       <a id="bt_entrada" class="waves-effect waves-light btn col s5  blue darken-4" disabled="disabled"><i class="material-icons left">call_received</i> Entrada</a>
@@ -147,10 +180,6 @@
                       <a id="bt_salida" class="waves-effect waves-light btn col s5 push-s2 blue darken-4" disabled="disabled"><i class="material-icons left">call_made</i> Salida</a>
                     </div>
                   </div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                  <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                 </li>
               </ul>
         </div>
