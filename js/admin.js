@@ -8,6 +8,7 @@ var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','
 var dat = new Array();
 var ultima = new Array();
 var tr;
+var trabajadores = new Array();
 
 	$(document).ready(function(){
 		M.AutoInit();
@@ -24,10 +25,10 @@ var tr;
 			accordion: false
 		});
 		obtenerestado();
-		
 		obtenertabla();
-		
 		iniciar("Uriel");
+		obtenertrabajadore();
+		
 		
 		
 		$('#bt_entrada').click(function(){
@@ -69,31 +70,40 @@ var tr;
 				obtenertabla();
 				calcularhoras();
 		});
+		$('#agregartrabajador').click(function(){
+			agregarDirectorios($('#nombre').val());
+			trabajadores.push($('#nombre').val());
+			firebase.database().ref("Trabajadores").set(String(trabajadores));
+			limpiartrabajadores();
+			obtenertrabajadore();
+		});
+		$("#trabajadoreslist").on("click", "li", function() {
+			var id = $(this).attr("id")
+			ingresar(id);
+		});
+		$('#trabajadores').on("click", "a", function() {
+			var id = $(this).attr("id")
+			if ($(this).find('i').text() == 'delete'){
+				var r = confirm("¿Seguro quieres eliminar?");
+				if (r == true) {
+					eliminartrabajador(id);
+					trabajadores.splice(trabajadores.indexOf('id'), 1);
+					firebase.database().ref("Trabajadores").set(String(trabajadores));
+					limpiartrabajadores();
+					obtenertrabajadore();
+				} 
+			} else {
+				$('#qrcode canvas').each(function(){
+					$(this).remove();
+				});
+				id = CryptoJS.AES.encrypt(String(id), "cefio");
+				$('#qrcode').qrcode(String(id));
+			}
+			
+			
+		});
 		
-		$('#uriel').click(function(){
-			if ($('#pagost').find('i').text() == 'date_range'){
-				$('#pagost').find('i').text('monetization_on')
-			}
-			reftabla = 'Uriel/tabla';
-				refestado = 'Uriel/estado';
-				refsalario= 'Salarios/Uriel';
-				cambiar2();
-				obtenertabla();
-				iniciar("Uriel");
-				obtenerestado();
-		});
-		$('#jessica').click(function(){
-			if ($('#pagost').find('i').text() == 'date_range'){
-				$('#pagost').find('i').text('monetization_on')
-			}
-			reftabla = 'Jessica/tabla';
-				refestado = 'Jessica/estado';
-				refsalario= 'Salarios/Jessica'
-				obtenertabla();
-				cambiar2();
-				iniciar("Jessica");
-				obtenerestado();
-		});
+		
 		$('.timepicker').on('change', function() {
 			let receivedVal = $(this).val();
 			$(this).val(receivedVal + ":00");
@@ -157,6 +167,7 @@ var tr;
 				} 
 				
 			});
+			
 			$('#editar').click(function(){
 				$('#dia-editar .select-wrapper input').val(tds[0]);
 				$("#horai-editar").val(tds[1]);
@@ -168,7 +179,6 @@ var tr;
 			 var intps = ["nada",$("#horai-editar").val(),$("#horaf-editar").val()];
 			$('#sumahoras').text(restahorasv(intps));
 		  });
-
 	});
 	function obtenerestado(){
 		firebase.database().ref(refestado).once('value').then(function(snapshot) {
@@ -198,13 +208,10 @@ var tr;
 			rellenarpagos(Object.values(snapshot.val()));
 		  });
 	}
-	function retn(){
-		console.log($(this));
-	}
-	function eventotr(){
-		$('#tabla tbody tr').each(function(){
-			$(this).attr("onclick","retn()");
-		});
+	function eliminartrabajador(id) {
+		var salr = "Salarios/"+id;
+		firebase.database().ref(id).remove();
+		firebase.database().ref(salr).remove();
 	}
 	
 	function calcularhoras(){
@@ -229,6 +236,36 @@ var tr;
 			rellenartabla(snapshot.val());
 		  });
 	}
+	function rellenartrabajadores(val) {
+		var i=0;
+		var val = trabajadores;
+		while(i<val.length){
+			var fila='<li  class="collection-item"><div>'+val[i]+'<a id="' + val[i] + '" href="#!" class="secondary-content"><i class="material-icons red-text">delete</i></a><a id="' + val[i] + '" href="#modal5" class="secondary-content modal-trigger"><i class="fa fa-qrcode red-text" style="font-size:28px"></i></a></div></li>';
+			$('#trabajadores').append(fila);
+			i++;
+		}
+	}
+	function listartrabajadores() {
+		var i=0;
+		var val = trabajadores;
+		while(i<val.length){
+			var fila = '<li id="' + val[i] + '"  class="modal-close collection-item"><div>'+val[i]+'<a  href="#!" class="modal-close secondary-content"><i class="material-icons red-text text-darken-4">assignment_returned</i></a></div></li>';
+			$('#trabajadoreslist').append(fila);
+			i++;
+		}
+		
+	}
+	function obtenertrabajadore(){
+		firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
+			definirtrabajadores(snapshot.val());
+			rellenartrabajadores();
+			listartrabajadores();
+		  });
+	}
+	
+	function definirtrabajadores(val) {
+		trabajadores = val.split(",");
+	}
 	function rellenartabla(tabla){
 		var i=0;
 		if(tabla==""){
@@ -237,7 +274,7 @@ var tr;
 			tabla = tabla.split(",");
 		}
 		while(i<tabla.length-1){
-			
+
 			if(tabla[i+3]=="00:00:00"){
 				var fila='<tr id="ultima"><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
 				$('#tabla').append(fila);
@@ -359,6 +396,14 @@ var tr;
 		tabla = tabla.slice(0,-1);
 		firebase.database().ref(reftabla).set(tabla);
 	}
+	function guardar2(){
+		tabla ="";
+		$('#tabla tbody tr td').each(function(){
+				tabla = tabla+$(this).text()+",";
+		});
+		tabla = tabla.slice(0,-1);
+		firebase.database().ref("Trabajador/tabla").set(tabla);
+	}
 	function restahorasv(dat){
 		var hora1 = (dat[1]).split(":"),hora2 = (dat[2]).split(":"),t1 = new Date(),t2 = new Date();
 		t1.setHours(hora1[0], hora1[1], hora1[2]);
@@ -472,3 +517,32 @@ var tr;
 		});
 		return matrix;
 	}
+	
+function agregarDirectorios(id){
+	firebase.database().ref(id+"/estado").set("true");
+	firebase.database().ref(id+"/tabla").set("");
+}
+
+
+function ingresar(usr){
+	if ($('#pagost').find('i').text() == 'date_range'){
+		$('#pagost').find('i').text('monetization_on')
+	}
+	reftabla = usr+'/tabla';
+		refestado = usr+'/estado';
+		refsalario= 'Salarios/'+usr;
+		cambiar2();
+		obtenertabla();
+		iniciar(usr);
+		obtenerestado();
+}
+
+function limpiartrabajadores() {
+	$('#trabajadoreslist li').each(function(){
+		$(this).remove();
+	});
+	$('#trabajadores li').each(function(){
+		$(this).remove();
+	});
+}
+
