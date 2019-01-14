@@ -2,9 +2,6 @@ var estado;
 var reftabla;
 var refestado;
 var refsalario;
-var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GGzXz8gm3tGlkiINj33X6n";
-var carlos="UlRcEgXHSvwSMkCjhS3RoyuEwprGQKn6WU4tEyHAiCs3iOFEt5FfOvjS/n2pIIpA";
-var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
 var ultima = new Array();
 	$(document).ready(function(){
@@ -16,15 +13,7 @@ var ultima = new Array();
 		$('#bt_salida').click(function(){
 			salida();
             guardar();;
-		});
-		$('#bt_reiniciar').click(function(){
-			//reiniciar();
-			guardararchivo();
-		});
-		$('#horat').click(function(){
-			salario();
-		});
-		
+		});	
 
 	});
 	function calcularhoras(){
@@ -39,11 +28,11 @@ var ultima = new Array();
 		for(var i=1;i < horast.length;i++){
 			total = sumarhoras(total,horast[i]);
 		}
-		document.getElementById("horat").innerHTML =  total;
+		document.getElementById("horatt").innerHTML =  total;
 	}
 	function iniciar(t){
 		alert("codigo aceptado - "+t);
-		document.getElementById("titular").innerHTML = t;
+		document.getElementById("titular").innerHTML = t +" - Horario";
 	}
 	function obtenertabla(){
 		firebase.database().ref(reftabla).once('value').then(function(snapshot) {
@@ -52,7 +41,7 @@ var ultima = new Array();
 	}
 	function borrarcamara(){
 		$("#cam").remove();
-		//document.getElementById("contenido").style.display = "block";
+		
 	}
 	function obtenerestado(){
 		firebase.database().ref(refestado).once('value').then(function(snapshot) {
@@ -63,8 +52,10 @@ var ultima = new Array();
 		estado = e;
 		if(estado=="true"){
 			$('#bt_salida').attr('disabled', true);
+			$('#bt_entrada').attr('disabled', false);
 		}else{
 			$('#bt_entrada').attr('disabled', true);
+			$('#bt_salida').attr('disabled', false);
 		}
 	}
 	function rellenartabla(tabla){
@@ -116,60 +107,35 @@ var ultima = new Array();
 		}
 		calcularhoras();
 	}
-	function salidav(str){
-		var dat = str.split(",");
-		console.log(dat);
-		dat[3]=restahorasv(dat);
-		var fila='<tr><td>'+dat[0]+'</td><td>'+dat[1]+'</td><td>'+dat[2]+'</td><<td>'+dat[3]+'</td></tr>';
-		$('#tabla').append(fila);
-		guardar();
-		calcularhoras();
-	}
-	function restahorasv(dat){
-		var hora1 = (dat[1]).split(":"),hora2 = (dat[2]).split(":"),t1 = new Date(),t2 = new Date();
-		t1.setHours(hora1[0], hora1[1], hora1[2]);
-		t2.setHours(hora2[0], hora2[1], hora2[2]);
-		t1.setHours(t2.getHours() - t1.getHours(), t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
-		//var tiempo = "La diferencia es de: " + (t1.getHours() ? t1.getHours() + (t1.getHours() > 1 ? " horas" : " hora") : "") + (t1.getMinutes() ? ", " + t1.getMinutes() + (t1.getMinutes() > 1 ? " minutos" : " minuto") : "") + (t1.getSeconds() ? (t1.getHours() || t1.getMinutes() ? " y " : "") + t1.getSeconds() + (t1.getSeconds() > 1 ? " segundos" : " segundo") : "");
-		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
-		return tiempo;
-	}
 	function restahoras(){
 		var hora1 = (ultima[1]).split(":"),hora2 = (ultima[2]).split(":"),t1 = new Date(),t2 = new Date();
 		t1.setHours(hora1[0], hora1[1], hora1[2]);
 		t2.setHours(hora2[0], hora2[1], hora2[2]);
 		t1.setHours(t2.getHours() - t1.getHours(), t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
-		//var tiempo = "La diferencia es de: " + (t1.getHours() ? t1.getHours() + (t1.getHours() > 1 ? " horas" : " hora") : "") + (t1.getMinutes() ? ", " + t1.getMinutes() + (t1.getMinutes() > 1 ? " minutos" : " minuto") : "") + (t1.getSeconds() ? (t1.getHours() || t1.getMinutes() ? " y " : "") + t1.getSeconds() + (t1.getSeconds() > 1 ? " segundos" : " segundo") : "");
-		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		var tiempo = (t1.getHours() > 9 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 9 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 9 ? "" : "0")+t1.getSeconds();
 		ultima[3]=tiempo;
 	}
 	function sumarhoras(hr1,hr2){
-		var hora1 = hr1.split(":"),hora2 = hr2.split(":"),t1 = new Date(),t2 = new Date();
-		t1.setHours(hora1[0], hora1[1], hora1[2]);
-		t2.setHours(hora2[0], hora2[1], hora2[2]);
-		t1.setHours(t2.getHours() + t1.getHours(), t2.getMinutes() + t1.getMinutes(), t2.getSeconds() + t1.getSeconds());
-		var tiempo = (t1.getHours() > 10 ? "" : "0")+t1.getHours()+":"+(t1.getMinutes() > 10 ? "" : "0")+t1.getMinutes()+":"+(t1.getSeconds() > 10 ? "" : "0")+t1.getSeconds();
+		var hora1 = hr1.split(":"),hora2 = hr2.split(":"),horas,minutos,segundos,tmp;
+		horas = Number(hora1[0])+Number(hora2[0]);
+		minutos= Number(hora1[1])+Number(hora2[1]);
+		segundos=Number(hora1[2])+Number(hora2[2]);
+		if(minutos>60){
+			tmp = Math.floor(minutos/60);
+			horas = horas + tmp;
+			tmp = minutos % 60;
+			minutos = tmp;
+			if(segundos>60){
+				tmp = Math.floor(segundos/60);
+				minutos = minutos + tmp;
+				tmp = segundos % 60;
+				segundos = tmp;
+			}
+		}
+		var tiempo = (horas> 9 ? "" : "0")+horas+":"+(minutos > 9 ? "" : "0")+minutos+":"+(segundos > 9 ? "" : "0")+segundos;
 		return tiempo;
 	}
-	function salario(){
-		var horastl = document.getElementById("horat").innerHTML;
-		var t1 = new Date();
-		horastl = horastl.split(":");
-		t1.setHours(horastl[0],horastl[1],horastl[2]);
-		sal=(t1.getHours()*18)+((t1.getMinutes()/60)*18);
-		alert(sal);
-		var r = confirm("¿desea limpiar?");
-		if(r == true){
-			if(estado == "false"){
-				alert("registre su salida");
-			}else{
-				limpiar();
-				firebase.database().ref(refsalario).push({salario: sal})
-			}
-		}else{
-			
-		}
-	}
+	
 
 	function openQRCamera(node) {
 		var reader = new FileReader();
@@ -179,36 +145,7 @@ var ultima = new Array();
 			if(res instanceof Error) {
 			  alert("No se detecto ningun QR vuelva a intentarlo");
 			} else {
-				if(res == carlos){
-					reftabla = 'Carlos/tabla';
-					refestado = 'Carlos/estado';
-					refsalario= 'Salarios/Carlos'
-					obtenerestado();
-					obtenertabla();
-					iniciar("Carlos");
-					borrarcamara();
-				}else{
-				if(res == uriel){
-					reftabla = 'Uriel/tabla';
-					refestado = 'Uriel/estado';
-					refsalario= 'Salarios/Uriel'
-					obtenerestado();
-					obtenertabla();
-					iniciar("Uriel");
-					borrarcamara();
-				}else{
-				if(res == jessica){
-					reftabla = 'Jessica/tabla';
-					refestado = 'Jessica/estado';
-					refsalario= 'Salarios/Jessica'
-					obtenerestado();
-					obtenertabla();
-					iniciar("Jessica");
-					borrarcamara();
-				}else{
-				  alert(res);
-				}
-				}}
+				loguear(res);
 			}
 		  };
 		  qrcode.decode(reader.result);
@@ -234,10 +171,25 @@ var ultima = new Array();
 		tabla = tabla.slice(0,-1);
 		firebase.database().ref(reftabla).set(tabla);
 	}
-    function limpiar(){
-		$('#tabla tbody tr').each(function(){
-				$(this).remove();
-				firebase.database().ref(reftabla).set("");
-				firebase.database().ref(refestado).set("true");
-		});
+	function loguear(qr){
+		firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
+				verificar(snapshot.val(),qr);
+		  });
+	}
+	function verificar(val,qr) {
+		var tmp = CryptoJS.AES.decrypt(qr, "cefio").toString(CryptoJS.enc.Utf8);
+		val = val.split(",");
+
+		for (let i = 0; i < val.length; i++) {
+			if (tmp == val[i]) {
+				reftabla = val[i]+'/tabla';
+				refestado = val[i]+'/estado';
+				refsalario= 'Salarios/'+val[i];
+				obtenerestado();
+				obtenertabla();
+				iniciar(val[i]);
+				borrarcamara();
+				break;
+			}
+		}
 	}
