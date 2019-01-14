@@ -1,64 +1,14 @@
-h1{
-    margin: 0;
-    
-    color: black;
+body{
+    background: #830000;
 }
-
-.tabler{
-    margin-top: -130px;
-    padding: 10px;
-}
-.table {
-    border-style: solid;
-    
+#tabla tbody {
+    background: #ffffff;
 }
 #tabla td{
     padding: 10px;
 }
-tbody{
-    background-color: white;
-}
-.botones{
-    display:scroll;
-    position:fixed;
-    bottom:10px;
-    right:10px;
-}
-.box{
-    border-radius: 48px;
-    padding-left: 10px;
-    padding-right: 10px;
-    display:scroll;
-    position:fixed;
-    bottom:10px;
-    right:10px;
-}
-.box .input-field{
-    margin: 0px;
-}
-.select-dropdown {
-    
-    margin: 0px !important;
-}
-.pagos{
-    display:scroll;
-    position:fixed;
-    bottom: 10px;
-    left:10px;
-}
-#ultima{
-    background: green;
-    color: #ffffff;
-}
-.myButton{
-    border-radius: 28px;
-}
-.nomargin{
-    margin: 0 !important;
-}
-.ht{
-   padding: 10px !important;
-}
+
+
 .padre {
     position: fixed;
     text-align: center;
@@ -71,7 +21,97 @@ tbody{
     justify-content: center;
     align-items: center;
   }
-  .Buttonqr {
+  
+.camara{
+    background: #000000;
+}
+.titulo{
+    background: #7f0000;
+    color: #ffffff;
+}
+.table-striped{
+    background: rgba(255,0,0,0.2);
+}
+.botones{
+    display:scroll;
+    position:fixed;
+    bottom:10px;
+    right:0px;
+}
+.ht{
+    display:scroll;
+    position:fixed;
+    bottom:10px;
+    left:0px;
+    background: #00fc3f;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	display:inline-block;
+	color:black;
+	font-family:Arial;
+	font-size:14px;
+	padding:16px 31px;
+	text-decoration:none;
+}
+.ht:hover{
+    cursor: pointer;
+    background: #00c732;
+}
+.pagos{
+    display:scroll;
+    position:fixed;
+    top: 10px;
+    right:0px;
+    background: #fceb00;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	display:inline-block;
+	color:black;
+	font-family:Arial;
+	font-size:14px;
+	padding:16px 31px;
+	text-decoration:none;
+}
+.pagos:hover{
+    cursor: pointer;
+    background: #afa402;
+}
+.box{
+    background-color: #0d47a1;
+    padding: 7px;
+    border-radius: 28px;
+}
+.box select{
+    text-align-last:center;
+    background-color: #0d47a1;
+    border: #0d47a1;
+    color: white;
+    min-width: 130px;
+    width: 100%;
+    height: 40px;
+}
+.box select:active,.box select:focus{
+    outline: none;
+}
+.ht h6{
+    margin: 0;
+}
+.barra{
+    background: #b71c1c;
+    width: 100%;
+    height: 250px;
+}
+.table{
+    margin-bottom: 0px;
+}
+#ultima{
+    color: #1b5e20;
+    font-weight: bold;
+    border: solid #1b5e20;
+}
+.Buttonqr {
 	background-color:#ff0000;
 	-moz-border-radius:28px;
 	-webkit-border-radius:28px;
@@ -91,7 +131,7 @@ tbody{
     -webkit-filter: invert(80%);
     filter: invert(80%);
 }
-  .fileUpload {
+.fileUpload {
     position: relative;
     overflow: hidden;
     margin: 10px;
@@ -117,4 +157,11 @@ tbody{
     float: left;
     -webkit-filter: invert(100%);
     filter: invert(100%);
+}
+
+h5{
+    margin: 10px;
+}
+.tabler{
+    margin: 10px;
 }
