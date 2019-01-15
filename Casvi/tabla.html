@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="css/tabla.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="img/logo.png" />
+    <title>CEFIO-Inicio</title>
+  </head>
+
+  <body>
+    <div class="row content">
+      <h5 id="titular" class="col s12">uriel - Horario</h5>
+      <div class="col s12 table">
+          <table id="tabla" class="table">
+            <thead class="titulo">
+              <tr>
+                <td>Dia</td>
+                <td>Entrada</td>
+                <td>Salida</td>
+                <td>Tiempo</td>
+              </tr>
+            </thead>
+            <tbody class="tablah"></tbody>
+          </table>
+    </div>
+    <div class="col s12">
+        <br>
+        <div id="horatt" class="chip blue full white-text center-align col s12">
+            Tag
+          </div>
+          <br><br>
+      </div>
+    <div class="row">
+      <div class="botones col s12">
+              <a id="bt_entrada" class="waves-effect waves-light btn col s5  blue darken-4" disabled="disabled"><i class="material-icons left">call_received</i> Entrada</a>
+              <a id="bt_salida" class="waves-effect waves-light btn col s5 push-s2 blue darken-4" disabled="disabled"><i class="material-icons left">call_made</i> Salida</a>
+      </div>
+    </div>
+    <div id="cam" class="padre">
+        <div class="fileUpload Buttonqr">
+            <span class="ico"></span>
+            <input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1 class="upload"></label>
+        </div>
+        </div>
+            
+  
+
+    
+<!--Firebase-->
+<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyAWIZ9xPtMA61tp7HDgb0fTSusw0vzAm0Y",
+  authDomain: "casvi-4d765.firebaseapp.com",
+  databaseURL: "https://casvi-4d765.firebaseio.com",
+  projectId: "casvi-4d765",
+  storageBucket: "casvi-4d765.appspot.com",
+  messagingSenderId: "406965456465"
+ };
+firebase.initializeApp(config);
+</script>
+      
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://webqr.com/llqrcode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="js/Uriel.js"></script>
+    
+    
+  </body>
+</html>
+      
