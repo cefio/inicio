@@ -38,8 +38,9 @@
                   </thead>
                   <tbody class="tablah"></tbody>
                 </table>
+                
 
-                <div class="fixed-action-btn rel">
+                <div id="bot" class="fixed-action-btn rel scale-transition scale-out">
                     <a class="btn-floating btn-large blue-grey darken-4 rotate">
                       <i class="large material-icons">menu</i>
                     </a>
@@ -50,6 +51,7 @@
                       <li><a class="btn-floating blue modal-trigger" href="#modal1"><i class="material-icons">supervised_user_circle</i></a></li>
                     </ul>
                   </div>
+                  
                   <div id="modal1" class="modal bottom-sheet white">
                       <div class="modal-content nopading ">
                           <ul id="trabajadoreslist" class="collection with-header nomargin">
@@ -219,8 +221,28 @@
             </div>
           </div>
   
-       
+         
       </div>
+      <div id="login" class=" padre valign-wrapper row black">
+          <div class="col s8 pull-s2">
+            
+              <div class="card">
+                  <div class="progress red">
+                      <div id="bar" class="indeterminate white"></div>
+                  </div>
+                  <div class="card-content">
+                      <span class="card-title">Ingrese contraseña</span>
+                      <div class="input-field">
+                          <i class="material-icons prefix">lock</i>
+                          <input id="contraseña" type="password" class="validate">
+                          <label for="contraseña">Contraseña</label>
+                        </div>
+              </div>
+              <a id="acceder" class="waves-effect waves-light btn col s10 push-s1 red darken-4 up ">Acceder</a>
+            </div>
+      </div>
+         
+      
     
               <!--Firebase-->
               <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
