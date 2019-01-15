@@ -2,6 +2,7 @@ var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','
 var ultima = new Array();
 var trabajadores = new Array();
 var tr,pass,access;
+var qrcode = new QRCode("qrcode");
 
 	$(document).ready(function(){
 		M.AutoInit();
@@ -91,7 +92,7 @@ var tr,pass,access;
 					$(this).remove();
 				});
 				id = CryptoJS.AES.encrypt(String(id), "cefio");
-				$('#qrcode').qrcode(String(id));
+				qrcode.makeCode(String(id));
 			}
 			
 			
@@ -144,6 +145,10 @@ var tr,pass,access;
 			$('#borrar').click(function(){
 				var r = confirm("¿Seguro quieres eliminar?");
 				if (r == true) {
+					if(tr.attr("id") == "ultima"){
+						firebase.database().ref(refestado).set("true");
+						obtenerestado();
+					}
 					tr.remove();
 					guardar();
 				} 
@@ -151,10 +156,20 @@ var tr,pass,access;
 			});
 			
 			$('#editar').click(function(){
-				$('#dia-editar .select-wrapper input').val(tds[0]);
-				$("#horai-editar").val(tds[1]);
-				$("#horaf-editar").val(tds[2]);
-				$('#sumahoras').text(restahorasv(tds));
+				if(tr.attr("id") == "ultima"){
+					$('#dia-editar .select-wrapper input').val(tds[0]);
+					$("#horai-editar").val(tds[1]);
+					$("#horaf-editar").val("00:00:00");
+					$("#horaf-editar").attr('disabled', true);
+					$('#sumahoras').text("00:00:00");
+				}else{
+					$("#horaf-editar").attr('disabled', false);
+					$('#dia-editar .select-wrapper input').val(tds[0]);
+					$("#horai-editar").val(tds[1]);
+					$("#horaf-editar").val(tds[2]);
+					$('#sumahoras').text(restahorasv(tds));
+				}
+				
 			});
 		  });
 		  $('#horai-editar, #horaf-editar').change(function(){
