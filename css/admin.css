@@ -54,6 +54,11 @@ body{
     font-weight: bold;
     border: solid #1b5e20;
 }
+#qrcode img{
+    display: inline-block !important;
+    margin: 0px;
+    padding: 0;
+}
 
 .rel{
     margin-bottom: 32px;
