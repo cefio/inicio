@@ -102,18 +102,6 @@ var tr,pass,access;
 			let receivedVal = $(this).val();
 			$(this).val(receivedVal + ":00");
 		});
-		$('#carlos').click(function(){
-			if ($('#pagost').find('i').text() == 'date_range'){
-				$('#pagost').find('i').text('monetization_on')
-			}
-			reftabla = 'Carlos/tabla';
-				refestado = 'Carlos/estado';
-				refsalario= 'Salarios/Carlos'
-				obtenertabla();
-				cambiar2();
-				iniciar("Gerardo");
-				obtenerestado();
-		});
 		$('#pagost').click(function(){
 			if ($(this).find('i').text() == 'monetization_on'){
 				$(this).find('i').text('date_range');
@@ -187,6 +175,7 @@ var tr,pass,access;
 				firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
 					var tmp = snapshot.val().split(",");
 					ingresar(tmp[0]);
+					obtenertrabajadore();
 				  });
 			}else{
 				$("#bar").addClass( "determinate" );
