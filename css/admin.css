@@ -1,3 +1,32 @@
+body{
+    overflow: hidden;
+}
+/* label color */
+.input-field label {
+    color: #000;
+  }
+  /* label focus color */
+  .input-field input:focus + label  {
+    color: #b71c1c !important;
+  }
+  /* label underline focus color */
+  .input-field input:focus  {
+    border-bottom: 1px solid #b71c1c !important; 
+    box-shadow: 0 1px 0 0 #b71c1c !important;
+  }
+
+  .input-field .prefix.active {
+    color: #b71c1c !important;
+  }
+  .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #b71c1c !important;
+}
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #f44336 !important;
+}
+.select-wrapper ul{
+    position: fixed;
+}
 .buttom{
         display:scroll;
         position:fixed;
@@ -11,7 +40,15 @@
 .nopading{
     padding: 0 !important;
 }
-
+.padre  {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+.up{
+    margin-top: -20px;
+}
 #ultima{
     color: #1b5e20;
     font-weight: bold;
@@ -28,25 +65,4 @@
     text-align: center;
     color: #1b5e20;
 }
-/* label color */
-.input-field label {
-    color: #000;
-  }
-  /* label focus color */
-  .input-field input[type=number]:focus + label  {
-    color: #b71c1c !important;
-  }
-  /* label underline focus color */
-  .input-field input[type=number]:focus  {
-    border-bottom: 1px solid #b71c1c !important; 
-    box-shadow: 0 1px 0 0 #b71c1c !important;
-  }
-  .input-field .prefix.active {
-    color: #b71c1c;
-  }
-  .switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #b71c1c !important;
-}
-.switch label input[type=checkbox]:checked+.lever {
-    background-color: #f44336 !important;
-}
+
