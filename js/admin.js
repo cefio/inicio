@@ -1,14 +1,7 @@
-var estado = "true";
-var reftabla= 'Uriel/tabla';
-var refestado = 'Uriel/estado';
-var refsalario = 'Salarios/Uriel';
-var uriel="B9VVaLm2AFwZ3MioRtFhy4dkjXU/8YAlcSG3BmhQe/GOzXz8gm3tGlkiINj33X6n";
-var jessica="SEhjBd2vKQwciB1pA1r8hHYx+xFpFD01gRiWPYwuazrtQA0JoKwrdDXXt0/2N/aJ";
 var dias = new Array('domingo','lunes','martes','miercoles','jueves','viernes','sabado')
-var dat = new Array();
 var ultima = new Array();
-var tr;
 var trabajadores = new Array();
+var tr,pass,access;
 
 	$(document).ready(function(){
 		M.AutoInit();
@@ -24,10 +17,11 @@ var trabajadores = new Array();
 			var instance = M.Collapsible.init(elem, {
 			accordion: false
 		});
-		obtenerestado();
-		obtenertabla();
-		iniciar("Uriel");
-		obtenertrabajadore();
+		autologin();
+		$('#acceder').click(function(){
+			pass = $("#contraseña").val();
+			acceder();
+		});
 		
 		
 		
@@ -184,6 +178,30 @@ var trabajadores = new Array();
 		firebase.database().ref(refestado).once('value').then(function(snapshot) {
 			asignarestado(snapshot.val());
 		  });
+	}
+	function acceder(){
+		firebase.database().ref("contraseña").once('value').then(function(snapshot,) {	
+			if (pass == snapshot.val()) {
+					localStorage.setItem("contraseña", pass);
+				login();
+				firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
+					var tmp = snapshot.val().split(",");
+					ingresar(tmp[0]);
+				  });
+			}else{
+				$("#bar").addClass( "determinate" );
+				M.toast({html: 'ERROR  contraseña invalida', classes: "red darken-4 white-text"})
+			}
+		  });
+	}
+	function autologin() {
+		pass = localStorage.getItem("contraseña");
+		acceder();
+	}
+	function login() {
+		$("#login").remove()
+		$("body").css({"overflow":"visible"});
+		$("#bot").toggleClass( "scale-out" );
 	}
 	function asignarestado(e){
 		estado = e;
