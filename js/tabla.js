@@ -66,11 +66,19 @@ var ultima = new Array();
 			tabla = tabla.split(",");
 		}
 		while(i<tabla.length-1){
-			
+
 			if(tabla[i+3]=="00:00:00"){
+				tabla[i+1] = tabla[i+1].replace(/ AM/g, "");
+				tabla[i+1] = tabla[i+1].replace(/ PM/g, "");
+				tabla[i+2] =tabla[i+2].replace(/ AM/g, "");
+				tabla[i+2] = tabla[i+2].replace(/ PM/g, "");
 				var fila='<tr id="ultima"><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
 				$('#tabla').append(fila);
 			}else{
+				tabla[i+1] = tabla[i+1].replace(/ AM/g, "");
+				tabla[i+1] = tabla[i+1].replace(/ PM/g, "");
+				tabla[i+2] =tabla[i+2].replace(/ AM/g, "");
+				tabla[i+2] = tabla[i+2].replace(/ PM/g, "");
 				var fila='<tr><td>'+tabla[i+0]+'</td><td>'+tabla[i+1]+'</td><td>'+tabla[i+2]+'</td><<td>'+tabla[i+3]+'</td></tr>';
 				$('#tabla').append(fila);
 			}
@@ -81,7 +89,10 @@ var ultima = new Array();
 	function entrada(){
 		var fecha = new Date();
 		var dia = dias[fecha.getDay()];
-		var fila='<tr id="ultima"><td>'+dia+'</td><td>'+fecha.toLocaleTimeString()+'</td><td>00:00:00</td><<td>00:00:00</td></tr>';
+		var horaentrada = fecha.toLocaleTimeString();
+		horaentrada.replace(/ AM/g, "");
+		horaentrada.replace(/ PM/g, "");
+		var fila='<tr id="ultima"><td>'+dia+'</td><td>'+horaentrada+'</td><td>00:00:00</td><<td>00:00:00</td></tr>';
 		if(estado=="true"){
 			$('#bt_entrada').attr('disabled', true);
 			$('#bt_salida').attr('disabled', false);
@@ -96,6 +107,8 @@ var ultima = new Array();
 		ultima[2]= fecha.toLocaleTimeString();
 		eliminar();
 		restahoras();
+		ultima[3].replace(/ AM/g, "");
+		ultima[3].replace(/ PM/g, "");
 		var fila='<tr><td>'+ultima[0]+'</td><td>'+ultima[1]+'</td><td>'+ultima[2]+'</td><<td>'+ultima[3]+'</td></tr>';
 		$('#tabla').append(fila);
 		$('#bt_entrada').attr('disabled', false);
