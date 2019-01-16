@@ -1,0 +1,76 @@
+body{
+    overflow: hidden;
+}
+/* label color */
+.input-field label {
+    color: #000;
+  }
+  /* label focus color */
+  .input-field input:focus + label  {
+    color: #0d47a1 !important;
+  }
+  /* label underline focus color */
+  .input-field input:focus  {
+    border-bottom: 1px solid #0d47a1 !important; 
+    box-shadow: 0 1px 0 0 #0d47a1 !important;
+  }
+
+  .input-field .prefix.active {
+    color: #0d47a1 !important;
+  }
+  .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #b71c1c !important;
+}
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #345f9e !important;
+}
+.select-wrapper ul{
+    position: fixed;
+}
+.buttom{
+        display:scroll;
+        position:fixed;
+        bottom:0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+}
+.nomargin{
+    margin: 0px;
+}
+.nopading{
+    padding: 0 !important;
+}
+.padre  {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+.up{
+    margin-top: -20px;
+}
+#ultima{
+    color: #1b5e20;
+    font-weight: bold;
+    border: solid #1b5e20;
+}
+#qrcode img{
+    display: inline-block !important;
+    margin: 0px;
+    padding: 0;
+}
+#tabla{
+    cursor: pointer;
+}
+
+.rel{
+    margin-bottom: 32px;
+}
+.full{
+    width: 100%;
+}
+.boton{
+    text-align: center;
+    color: #1b5e20;
+}
+
