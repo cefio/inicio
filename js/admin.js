@@ -173,8 +173,10 @@ var qrcode = new QRCode("qrcode");
 			});
 		  });
 		  $('#horai-editar, #horaf-editar').change(function(){
-			 var intps = ["nada",$("#horai-editar").val(),$("#horaf-editar").val()];
-			$('#sumahoras').text(restahorasv(intps));
+			if(tr.attr("id") != "ultima"){
+				var intps = ["nada",$("#horai-editar").val(),$("#horaf-editar").val()];
+				$('#sumahoras').text(restahorasv(intps));
+			}
 		  });
 	});
 	function obtenerestado(){
@@ -188,9 +190,15 @@ var qrcode = new QRCode("qrcode");
 					localStorage.setItem("contraseña", pass);
 				login();
 				firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
-					var tmp = snapshot.val().split(",");
-					ingresar(tmp[0]);
-					obtenertrabajadore();
+					var tmp;
+					if (snapshot.val()=="") {
+						tmp = null
+					}else{
+						tmp = snapshot.val().split(",");
+						ingresar(tmp[0]);
+						obtenertrabajadore();
+					}
+					
 				  });
 			}else{
 				$("#bar").addClass( "determinate" );
@@ -279,9 +287,12 @@ var qrcode = new QRCode("qrcode");
 	}
 	function obtenertrabajadore(){
 		firebase.database().ref("Trabajadores").once('value').then(function(snapshot) {
-			definirtrabajadores(snapshot.val());
-			rellenartrabajadores();
-			listartrabajadores();
+			if(snapshot.val()!=""){
+				definirtrabajadores(snapshot.val());
+				rellenartrabajadores();
+				listartrabajadores();
+			}
+			
 		  });
 	}
 	
