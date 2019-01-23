@@ -132,6 +132,7 @@ var qrcode = new QRCode("qrcode");
 			tr.children().eq(2).text(horafC);
 			tr.children().eq(3).text(horattl);
 			guardar();
+			calcularhoras();
 		});
 		$("#tabla").on("click", ".tablah tr", function() {
 			M.Toast.dismissAll();
@@ -349,8 +350,9 @@ var qrcode = new QRCode("qrcode");
 			if(sal == "NaN"){
 				M.toast({html: '<p><i class="material-icons left yellow-text">error</i>No hay horas registradas</p>',displayLength:900});
 			}else{
+				var tmp = $('#horatt').text().split(":");
 				limpiar();
-				sal = "$"+sal+"-"+fecha();
+				sal = "$"+sal+"-"+fecha()+" ["+tmp[0]+" Hrs]";
 				firebase.database().ref(refsalario).push({salario: sal})
 				M.toast({html: '<p><i class="material-icons left yellow-text">done_all</i>Salario agregado</p>',displayLength:900});
 			}
