@@ -15,7 +15,7 @@
 
   <body>
       <div class="row">
-        <div class="col s12 red darken-4 buttom">
+        <div class="col s12 red darken-4 z-depth-2 buttom">
           <ul  class="tabs tabs-transparent ">
             <li class="tab col s3"><a href="#test1"><i class="material-icons">calendar_today</i></a></li>
             <li class="tab col s3"><a  href="#test2"><i class="material-icons">more_horiz</i></a></li>
@@ -52,7 +52,7 @@
                     </ul>
                   </div>
                   
-                  <div id="modal1" class="modal bottom-sheet white">
+                  <div id="modal1" class="modal white">
                       <div class="modal-content nopading ">
                           <ul id="trabajadoreslist" class="collection with-header nomargin">
                               <h4 class="collection-header">Trabajadores</h4>
@@ -142,7 +142,7 @@
             </div>
         </div>
         <div id="test2" class="col s12">
-            <ul class="collapsible popout">
+            <ul class="collapsible">
                 <li class="active gradient">
                   <div class="collapsible-header"><i class="material-icons">playlist_add</i>Agregar hora</div>
                   <div class="collapsible-body">
@@ -179,20 +179,17 @@
                     </div>
                   </div>
                 </li>
-                <li >
-                  <div class="collapsible-header"><i class="material-icons">build</i>Gestionar trabajadores</div>
-                  <div class="collapsible-body">
-                    <div class="row nomargin">
-                      <ul id="trabajadores" class="col s12 collection with-header nopading"></ul>
-                      <div class="col s12">
-                        <br>
-                      </div>
-                      <a class="waves-effect waves-light btn modal-trigger red darken-4 col s12" href="#modal4">Agregar trabajador</a>
-                      
-                    </div>
-                  </div>
-                </li>
               </ul>
+              <div class=" nomargin">
+                  <ul id="trabajadores" class="col s12 collection with-header nopading"></ul>
+                  <div class="col s12">
+                    <br>
+                  </div>
+                  <a class="waves-effect waves-light btn modal-trigger red col s12" href="#modal4">Agregar trabajador</a>
+                  <div class="col 12">
+                    <br><br>
+                  </div>
+                </div>
         </div>
         <div id="modal4" class="modal">
             <div class="modal-content">
@@ -266,6 +263,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="/js/print.js"></script>
     <script src="js/qrgenerator.js"></script>
     <script src="js/admin.js"></script>
     
