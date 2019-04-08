@@ -30,6 +30,7 @@ body{
 .buttom{
         display:scroll;
         position:fixed;
+        z-index: 10;
         bottom:0;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
